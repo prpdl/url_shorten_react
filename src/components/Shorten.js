@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import QRCode from 'qrcode.react'
 
-const Shortern = ({ shortUrl }) => {
+const Shorten = ({ shortUrl }) => {
 
     const[isCopied, setCopy] = useState(false)
     const[shortenedUrl, setShortenedUrl] = useState('')
@@ -35,4 +35,4 @@ const Shortern = ({ shortUrl }) => {
 }
 
 
-export default Shortern
+export default Shorten

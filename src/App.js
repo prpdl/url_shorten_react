@@ -6,7 +6,7 @@ import Banner from './components/Banner';
 import Navigation from './components/Navigation';
 
 import bannerImage from './images/banner/tech_b_01.png'
-import Shortern from './components/Shortern';
+import Shorten from './components/Shorten';
 
 
 function App() {
@@ -43,7 +43,7 @@ function App() {
       <Navigation/>
       <Banner image={bannerImage}/>
       <SearchBar handleClick={shrink}/>
-      <Shortern shortUrl={shortUrl}/>
+      <Shorten shortUrl={shortUrl}/>
     </div>
   );
 }
