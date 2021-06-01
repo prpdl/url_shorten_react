@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-#menu-toggle:checked + #menu {
-    display: block;
-  }
+
+.nav-link {
+  @apply py-1 transform hover:text-yellow-600 hover:scale-110 lg:hover:scale-125 block
+}
+
+th {
+  @apply border border-black p-2
+}
+
+td {
+  @apply border border-black p-2
+}
