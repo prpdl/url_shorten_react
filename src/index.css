@@ -5,3 +5,12 @@
 #menu-toggle:checked + #menu {
     display: block;
   }
+
+  .banner-text {
+    top: 50%;
+    left:20%;
+  }
+
+  .sub-footer a {
+    @apply hover:text-gray-200 p-4
+  }
