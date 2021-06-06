@@ -1,15 +1,20 @@
 import { useState } from 'react'
 import axios from 'axios'
 import './App.css';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
+
 import SearchBar from './components/SearchBar';
 import Banner from './components/Banner';
 import Navigation from './components/Navigation';
-
 import bannerImage from './images/banner/tech_b_01.png'
 import Shorten from './components/Shorten';
 import Testarea from './components/Testarea';
 import Footer from './components/Footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+library.add(fab, faCheckSquare, faCoffee)
 
 function App() {
 
@@ -43,10 +48,8 @@ function App() {
     <div className="app">
       <Navigation />
       <Banner image={bannerImage} />
-      <div className="bg-gray-100 mt-5">
-        <SearchBar handleClick={shrink} setShortUrl={setShortUrl} />
-        <Shorten shortUrl={shortUrl} />
-      </div>
+      <SearchBar handleClick={shrink} setShortUrl={setShortUrl} />
+      <Shorten shortUrl={shortUrl} />
       <Footer />
       {/* <Testarea/> */}
     </div>

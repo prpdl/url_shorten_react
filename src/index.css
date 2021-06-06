@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+#root {
+  height: auto;
+}
+
 #menu-toggle:checked + #menu {
     display: block;
   }
@@ -13,4 +17,12 @@
 
   .sub-footer a {
     @apply hover:text-gray-200 p-4
+  }
+
+  .main-footer a {
+    @apply hover:text-gray-300
+  }
+
+  .app-store-link a {
+    @apply  p-2 border border-solid border-gray-200 text-gray-300 rounded-md hover:bg-yellow-500 hover:text-white
   }

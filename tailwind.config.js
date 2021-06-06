@@ -5,7 +5,8 @@ module.exports = {
     theme: {
       extend: {
         colors: {
-          footer: '#1b415e'
+          footer: '#1b415e',
+          twitter: '#00acee'
         }
       },
       height: {

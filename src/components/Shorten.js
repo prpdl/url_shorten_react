@@ -21,8 +21,8 @@ const Shorten = ({ shortUrl }) => {
 
     if (shortUrl.length > 0) {
         return (
-            <div className="flex pb-10 bg-white md:bg-gray-100 mt-5 flex-col justify-center items-center text-blue-400">
-                <p className="text-3xl text-yellow-500 font-bold">Your shortened URL</p>
+            <div className="flex pb-10 relative bg-white lg:bg-gray-100 flex-col justify-center items-center text-blue-400">
+                <p className="text-3xl text-yellow-500 font-bold pt-4">Your shortened URL</p>
                 <div className="short-result bg-white p-5 rounded-lg shadow-md w-full lg:w-1/2 flex flex-col items-center">
                     <div className="copy-result flex w-full">
                         <input type="text" className="p-3 flex-1 border border-solid border-yellow-500 rounded-lg rounded-r-none outline-none" value={shortenedUrl} id="shortUrl" onChange={() => {setShortenedUrl(shortUrl); setCopy(false)}} />
