@@ -10,9 +10,7 @@ import Banner from './components/Banner';
 import Navigation from './components/Navigation';
 import bannerImage from './images/banner/tech_b_01.png'
 import Shorten from './components/Shorten';
-import Testarea from './components/Testarea';
 import Footer from './components/Footer';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 library.add(fab, faCheckSquare, faCoffee)
 
