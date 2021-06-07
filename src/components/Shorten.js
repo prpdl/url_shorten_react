@@ -3,22 +3,30 @@ import QRCode from 'qrcode.react'
 
 const Shorten = ({ shortUrl }) => {
 
+    const copyUrl = () => {
+        console.log('Copy Mate')
+        navigator.clipboard.writeText(`http://localhost:3000/api/url/${shortUrl}`); 
+        setCopy(true)
+        setInterval(() => {
+            setCopy(false);
+        }, 10000)
+    }
+    
     const[isCopied, setCopy] = useState(false)
     const[shortenedUrl, setShortenedUrl] = useState('')
 
     useEffect(() => {
-        setShortenedUrl(`http://localhost:3000/url/${shortUrl}`)
-        setCopy(false)
+        setShortenedUrl(`http://localhost:3000/api/url/${shortUrl}`)
     })
 
     if (shortUrl.length > 0) {
         return (
-            <div className="flex flex-col justify-center bg-gray-100 py-5 items-center text-blue-400 w-full md:w-1/2">
-                <p className="text-3xl text-yellow-500 font-bold">Your shortened URL</p>
-                <div className="short-result bg-white p-5 shadow-md w-full flex flex-col items-center">
+            <div className="flex pb-10 relative bg-white lg:bg-gray-100 flex-col justify-center items-center text-blue-400">
+                <p className="text-3xl text-yellow-500 font-bold pt-4">Your shortened URL</p>
+                <div className="short-result bg-white p-5 rounded-lg shadow-md w-full lg:w-1/2 flex flex-col items-center">
                     <div className="copy-result flex w-full">
                         <input type="text" className="p-3 flex-1 border border-solid border-yellow-500 rounded-lg rounded-r-none outline-none" value={shortenedUrl} id="shortUrl" onChange={() => {setShortenedUrl(shortUrl); setCopy(false)}} />
-                        <button className="px-2 text-white rounded-lg rounded-l-none bg-yellow-500 focus:outline-none transform active:scale-90" onClick={() => {navigator.clipboard.writeText(`http://localhost:3000/api/url/${shortUrl}`); setCopy(true)}}>{isCopied ? 'URL Copied!':'Copy URL'}</button>
+                        <button className="px-2 text-white rounded-lg rounded-l-none bg-yellow-500 focus:outline-none transform active:scale-90" onClick={copyUrl}>{isCopied ? 'Copied!':'Copy URL'}</button>
                     </div>
                     <div className="qrcode flex flex-col items-center">
                         <QRCode className="mt-3" value={`http://localhost:3000/api/url/${shortUrl}`} />
