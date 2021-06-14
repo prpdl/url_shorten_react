@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {Link} from 'react-router-dom'
 import logo from '../images/nav_logo.png'
 const Navigation = () => {
     const [navToggle, setNavToggle] = useState(false)
@@ -31,8 +32,8 @@ const Navigation = () => {
                     </div>
 
                     <div className="right-menu lg:flex-1 flex lg:flex-row lg:justify-end flex-col items-center">
-                        <a href="#" className="nav-link py-1 lg:px-8 block"><span className="transform hover:text-yellow-600 hover:scale-150 inline-block">Sign up</span></a>
-                        <a href="#" className="nav-link py-1 lg:px-8 block"><span className="transform hover:text-yellow-600 hover:scale-150 inline-block">Login</span></a>
+                        <Link to="/registration" className="nav-link py-1 lg:px-8 block"><span className="transform hover:text-yellow-600 hover:scale-150 inline-block">Sign up</span></Link>
+                        <Link to="/login" className="nav-link py-1 lg:px-8 block"><span className="transform hover:text-yellow-600 hover:scale-150 inline-block">Login</span></Link>
                     </div>
                 </div>
 

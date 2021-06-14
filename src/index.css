@@ -26,3 +26,11 @@
   .app-store-link a {
     @apply  p-2 border border-solid border-gray-200 text-gray-300 rounded-md hover:bg-yellow-500 hover:text-white
   }
+
+  .login-input {
+    @apply focus:outline-none border border-solid border-yellow-600 rounded-md p-2 focus:ring-2 ring-yellow-500
+  }
+
+  .registration-field {
+    @apply focus:outline-none border border-solid border-yellow-600 rounded-md p-2 focus:ring-2 ring-yellow-500 w-full
+  }
