@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {Redirect} from 'react-router-dom'
 import axios from 'axios';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -17,16 +18,22 @@ const ShowError = ({ error }) => {
     )
 }
 
-function Login({ setToken }) {
+function Login({ setToken, auth, setAuth }) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState({});
     const [passwordResetDialog, setPasswordResetDialog] = useState(false);
+    const [redirect, setRedirect] = useState(false);
 
     const forgotPassword = () => {
         setPasswordResetDialog(true);
     }
+
+    if(redirect || auth) {
+        return <Redirect to="/"/>
+    }
+    
 
     const loginHandler = (e) => {
         e.preventDefault();
@@ -38,6 +45,9 @@ function Login({ setToken }) {
             .then(res => {
                 console.log(res.data)
                 setToken(res.data.token)
+                setAuth(true);
+                setRedirect(true);
+
             }).catch((err) => setError(err.response.data))
     }
 
@@ -53,7 +63,7 @@ function Login({ setToken }) {
                 </div>
                 <div className="inputArea flex flex-col justify-between py-2">
                     <label className="text-lg" htmlFor="password">Password</label>
-                    <input className="login-input" type="password" onChange={(e) => setPassword(e.target.value)} />
+                    <input className="login-input" type="password" placeholder="Current Password" onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <div className="forgot-password flex justify-around">
                     <Link to="/registration" className="text-blue-600 focus:outline-none cursor-pointer">Create a new account</Link>

@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import './App.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -21,23 +21,26 @@ library.add(fab, faCheckSquare, faCoffee, faArrowCircleLeft, faLock)
 
 function App() {
 
- 
   const [shortUrl, setShortUrl] = useState('')
-  const [token, setToken] = useState(null)
+  const [token, setToken] = useState(null);
+  const [auth, setAuth] = useState(false);
 
-
-
-  if(!token) {
-   
-  }
+  useEffect(async () => {
+    try {
+      const res = await axios.get('/verifyToken')
+        if(res.data.sucess){
+          setAuth(true);
+        }
+    } catch(error){
+      console.log(error.response)
+    }
+  })
 
   const shrink = (fullUrl) => {
     const post = async () => {
       try {
         const result = await axios.post('/api/url/',
           { fullUrl });
-
-        console.log(result)
         if (result.data.message) {
           setShortUrl(result.data.url.short)
           console.log(result.data.url.short)
@@ -53,21 +56,24 @@ function App() {
   }
 
   return (
-    <div className="app h-100v flex flex-col justify-between">
+    <div className="app h-100v flex flex-col justify-between relative">
       <BrowserRouter>
-      <Switch>
-        <Route path="/login">
-          <Login setToken={setToken}/>
-        </Route>
-        <Route exact path="/">
-          <Navigation />
-          <Banner image={bannerImage} />
-          <SearchBar handleClick={shrink} setShortUrl={setShortUrl} />
-          <Shorten shortUrl={shortUrl} />
-          <Footer />
-        </Route>
-        <Route path="/registration" component={Registration}/>
-      </Switch>
+        <Switch>
+          <Route path="/login">
+            <Login setToken={setToken} auth={auth} setAuth={setAuth} />
+          </Route>
+          <Route exact path="/">
+            <Navigation auth={auth} setAuth={setAuth} />
+            <Banner image={bannerImage} />
+            <SearchBar handleClick={shrink} setShortUrl={setShortUrl} />
+            <Shorten shortUrl={shortUrl} />
+            <Footer />
+          </Route>
+          <Route path="/registration" render={() => (
+              auth ? (<Redirect to="/"/>) : (<Registration/>)
+          )
+          } />
+        </Switch>
       </BrowserRouter>
       {/* <Testarea/> */}
     </div>
