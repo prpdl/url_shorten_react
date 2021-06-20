@@ -13,7 +13,6 @@ const Navigation = ({auth, setAuth}) => {
     return (
         <div className="min-w-full text-gray-300 absolute top-3 px-20 z-10">
             <div className="nav flex flex-wrap justify-between items-center font-mono">
-
                 <img src={logo} className="nav-logo max-h-20" />
                 <div className="right-nav flex items-center lg:order-2">
                     <button className="ml-5 text-yellow-600 border hidden sm:block border-solid border-yellow-600 p-3 hover:bg-yellow-600 hover:text-white rounded-lg transform active:scale-90 focus:outline-none">Contact Us</button>
@@ -36,7 +35,6 @@ const Navigation = ({auth, setAuth}) => {
                         <AuthStatus auth={auth} setAuth={setAuth}/>
                     </div>
                 </div>
-
             </div>
         </div>
     )
