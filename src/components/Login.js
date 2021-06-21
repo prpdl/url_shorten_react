@@ -45,8 +45,7 @@ function Login({ setToken, auth, setAuth }) {
             .then(res => {
                 console.log(res.data)
                 setToken(res.data.token)
-                setAuth(true);
-                setRedirect(true);
+                setAuth(true)
 
             }).catch((err) => setError(err.response.data))
     }

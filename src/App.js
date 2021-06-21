@@ -19,17 +19,24 @@ import Registration from './components/Registration';
 
 library.add(fab, faCheckSquare, faCoffee, faArrowCircleLeft, faLock)
 
-function App() {
+function App(props) {
 
   const [shortUrl, setShortUrl] = useState('')
   const [token, setToken] = useState(null);
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(null);
+  const [render, setRender] = useState(false);
+  const[loading, setLoading] = useState(true);
+  function handleAuth(value){
+    setAuth(value)
+  }
 
   useEffect(async () => {
+    console.log(auth);
     try {
       const res = await axios.get('/verifyToken')
         if(res.data.sucess){
           setAuth(true);
+          setLoading(false)
         }
     } catch(error){
       console.log(error.response)
@@ -54,9 +61,10 @@ function App() {
     }
     post();
   }
-
-  return (
-    <div className="app h-100v flex flex-col justify-between relative">
+  if(loading)
+    return null
+    return (  
+      <div className="app h-100v flex flex-col justify-between relative">
       <BrowserRouter>
         <Switch>
           <Route path="/login">
@@ -70,14 +78,14 @@ function App() {
             <Footer />
           </Route>
           <Route path="/registration" render={() => (
-              auth ? (<Redirect to="/"/>) : (<Registration/>)
-          )
-          } />
+            auth ? (<Redirect to="/"/>) : (<Registration auth={auth} handleAuth={handleAuth}/>)
+           )} />
         </Switch>
       </BrowserRouter>
       {/* <Testarea/> */}
     </div>
   );
 }
+
 
 export default App;
