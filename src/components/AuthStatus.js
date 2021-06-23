@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom'
 
 
 function AuthStatus({ auth, setAuth }) {
+
+    const [navUserTogggle, setNavUserToggle] = useState(false);
 
     const handleLogout = async () => {
         await axios.get('/api/user/logout').then(res => {
@@ -16,7 +19,15 @@ function AuthStatus({ auth, setAuth }) {
 
     if (auth) {
         return (
-            <a href="/" onClick={handleLogout} className={`nav-link py-1 lg:px-8 block transform hover:text-yellow-600 hover:scale-150 ${!auth ? " hidden" : ''}`}>Logout </a>
+            <>
+                <button className="navUserBoutton transform active:scale-90 flex focus:outline-none" onClick={()=>setNavUserToggle(!navUserTogggle)}>
+                    <img className="nav-img" src="https://i.pravatar.cc/50" />
+                    <FontAwesomeIcon icon="caret-down"/>
+                </button>
+                <div className={`navUserMenu ${navUserTogggle ? '':' hidden'}`}>
+                    <a href="/" onClick={handleLogout} className={`nav-link py-1 lg:px-8 block transform hover:text-yellow-600 hover:scale-150 ${!auth ? " hidden" : ''}`}>Logout </a>
+                </div>
+            </>
         )
     } else {
         return (

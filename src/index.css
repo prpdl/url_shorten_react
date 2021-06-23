@@ -30,3 +30,19 @@
   .registration-field {
     @apply focus:outline-none border border-solid border-yellow-600 rounded-md p-2 focus:ring-2 ring-yellow-500 w-full
   }
+
+  .nav-img {
+    border-radius: 50%;
+  }
+
+  .navUserMenu {
+    background-color: #1A415E;
+    position: absolute;
+    bottom: 0;
+    transform: translate(6%, 100%);
+
+  }
+
+  .navUserBoutton {
+    align-items: flex-end;
+  }

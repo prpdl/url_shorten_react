@@ -4,7 +4,7 @@ import axios from 'axios'
 import './App.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faCheckSquare, faCoffee, faArrowCircleLeft, faLock } from '@fortawesome/free-solid-svg-icons'
+import { faCheckSquare, faCoffee, faArrowCircleLeft, faLock, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
 
 import SearchBar from './components/SearchBar';
 import Banner from './components/Banner';
@@ -17,15 +17,16 @@ import Registration from './components/Registration';
 
 
 
-library.add(fab, faCheckSquare, faCoffee, faArrowCircleLeft, faLock)
+library.add(fab, faCheckSquare, faCoffee, faArrowCircleLeft, faLock, faCaretUp, faCaretDown)
 
-function App(props) {
+function App() {
 
   const [shortUrl, setShortUrl] = useState('')
-  const [token, setToken] = useState(null);
   const [auth, setAuth] = useState(null);
-  const [render, setRender] = useState(false);
-  const[loading, setLoading] = useState(true);
+  const[loading, setLoading] = useState(true, setTimeout(() => {
+    setLoading(false);
+  }, 2000));
+
   function handleAuth(value){
     setAuth(value)
   }
@@ -68,7 +69,7 @@ function App(props) {
       <BrowserRouter>
         <Switch>
           <Route path="/login">
-            <Login setToken={setToken} auth={auth} setAuth={setAuth} />
+            <Login auth={auth} setAuth={setAuth} />
           </Route>
           <Route exact path="/">
             <Navigation auth={auth} setAuth={setAuth} />

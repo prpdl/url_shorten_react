@@ -31,7 +31,7 @@ const Navigation = ({auth, setAuth}) => {
                         <a href="#" className="nav-link py-1 block"><span className="transform hover:text-yellow-600 hover:scale-150 inline-block">Domains</span></a>
                     </div>
 
-                    <div className="right-menu lg:flex-1 flex lg:flex-row lg:justify-end flex-col items-center">
+                    <div className="right-menu lg:flex-1 flex lg:flex-row lg:justify-end flex-col items-center relative">
                         <AuthStatus auth={auth} setAuth={setAuth}/>
                     </div>
                 </div>

@@ -43,8 +43,6 @@ function Login({ setToken, auth, setAuth }) {
                 password: password
             })
             .then(res => {
-                console.log(res.data)
-                setToken(res.data.token)
                 setAuth(true)
 
             }).catch((err) => setError(err.response.data))
